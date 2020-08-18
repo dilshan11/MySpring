@@ -8,6 +8,8 @@ public class CustomerDao {
     private int id;
     private String name;
     private int pnumber;
+    private String email;
+    private String faceBookName;
 
     public CustomerDao() {
     }
@@ -16,6 +18,30 @@ public class CustomerDao {
         this.id = id;
         this.name = name;
         this.pnumber = pnumber;
+    }
+
+    public CustomerDao(int id, String name, int pnumber, String email, String faceBookName) {
+        this.id = id;
+        this.name = name;
+        this.pnumber = pnumber;
+        this.email = email;
+        this.faceBookName = faceBookName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getFaceBookName() {
+        return faceBookName;
+    }
+
+    public void setFaceBookName(String faceBookName) {
+        this.faceBookName = faceBookName;
     }
 
     public int getId() {

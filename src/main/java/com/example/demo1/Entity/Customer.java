@@ -1,8 +1,6 @@
 package com.example.demo1.Entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "customer_table")
@@ -10,11 +8,15 @@ public class Customer {
     //id
     //name
     //pnumber
-
+    //customerDetails
     @Id
     private int id;
     private String name;
     private int pnumber;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "customer_Details_Id")
+    private CustomerDetails customerDetails;
 
     public Customer() {
     }
@@ -28,6 +30,21 @@ public class Customer {
         this.id = id;
         this.name = name;
         this.pnumber = pnumber;
+    }
+
+    public Customer(int id, String name, int pnumber, CustomerDetails customerDetails) {
+        this.id = id;
+        this.name = name;
+        this.pnumber = pnumber;
+        this.customerDetails = customerDetails;
+    }
+
+    public CustomerDetails getCustomerDetails() {
+        return customerDetails;
+    }
+
+    public void setCustomerDetails(CustomerDetails customerDetails) {
+        this.customerDetails = customerDetails;
     }
 
     public int getId() {
@@ -60,6 +77,7 @@ public class Customer {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", pnumber=" + pnumber +
+                ", customerDetails=" + customerDetails +
                 '}';
     }
 }

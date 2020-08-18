@@ -35,6 +35,7 @@ public class CustomerController {
 
     @PostMapping("/customers")
     public void addCustomer(@RequestBody CustomerDao customerDao){
+        System.out.println(customerDao);
          this.customerService.addCustomer(customerDao);
     }
     @PutMapping("/customers")
