@@ -24,6 +24,7 @@ public class CustomerService {
     private CustomerRepositery customerRepositery;
 
 
+
     public List<CustomerDao> getAllCustomers(){
         List<CustomerDao> customerDaoList=new ArrayList<>();
         List<Customer> customerList =this.customerRepositery.findAll();

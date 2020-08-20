@@ -14,7 +14,7 @@ public class Customer {
     private String name;
     private int pnumber;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
     @JoinColumn(name = "customer_Details_Id")
     private CustomerDetails customerDetails;
 
