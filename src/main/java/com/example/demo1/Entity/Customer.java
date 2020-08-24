@@ -1,50 +1,56 @@
 package com.example.demo1.Entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-@Table(name = "customer_table")
+@Table(name = "customer")
 public class Customer {
     //id
     //name
-    //pnumber
-    //customerDetails
+    //email
+    //password
+    //customer_details
+
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
-    private int pnumber;
+    private String email;
+    private String password;
 
-    @OneToOne(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
-    @JoinColumn(name = "customer_Details_Id")
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="customer_details_id")
     private CustomerDetails customerDetails;
+
+    @OneToMany(mappedBy = "customer")
+    private List<Order> orders;
 
     public Customer() {
     }
 
-    public Customer(String name, int pnumber) {
+    public Customer(String name, String email, String password) {
         this.name = name;
-        this.pnumber = pnumber;
+        this.email = email;
+        this.password = password;
     }
 
-    public Customer(int id, String name, int pnumber) {
-        this.id = id;
+    public Customer(String name, String email, String password, CustomerDetails customerDetails) {
         this.name = name;
-        this.pnumber = pnumber;
-    }
-
-    public Customer(int id, String name, int pnumber, CustomerDetails customerDetails) {
-        this.id = id;
-        this.name = name;
-        this.pnumber = pnumber;
+        this.email = email;
+        this.password = password;
         this.customerDetails = customerDetails;
     }
 
-    public CustomerDetails getCustomerDetails() {
-        return customerDetails;
+    public List<Order> getOrders() {
+        return orders;
     }
 
-    public void setCustomerDetails(CustomerDetails customerDetails) {
-        this.customerDetails = customerDetails;
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 
     public int getId() {
@@ -63,12 +69,36 @@ public class Customer {
         this.name = name;
     }
 
-    public int getPnumber() {
-        return pnumber;
+    public String getEmail() {
+        return email;
     }
 
-    public void setPnumber(int pnumber) {
-        this.pnumber = pnumber;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public CustomerDetails getCustomerDetails() {
+        return customerDetails;
+    }
+
+    public void setCustomerDetails(CustomerDetails customerDetails) {
+        this.customerDetails = customerDetails;
+    }
+
+    public void add(Order temporder){
+        if(this.orders==null){
+            this.orders=new ArrayList<>();
+        }
+        this.orders.add(temporder);
+        temporder.setCustomer(this);
     }
 
     @Override
@@ -76,7 +106,8 @@ public class Customer {
         return "Customer{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", pnumber=" + pnumber +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
                 ", customerDetails=" + customerDetails +
                 '}';
     }

@@ -1,31 +1,58 @@
 package com.example.demo1.Dao;
 
 public class CustomerDao {
-    //id
+
     //name
-    //pnumber
+    //email
+    //password
+
+    //job
+    //facebookName
+
+    //date
 
     private int id;
     private String name;
-    private int pnumber;
     private String email;
-    private String faceBookName;
+    private String password;
+    private String job;
+    private String facebookName;
+    private String date;
 
     public CustomerDao() {
     }
 
-    public CustomerDao(int id, String name, int pnumber) {
+    public CustomerDao(int id, String name, String email, String password, String job, String facebookName) {
         this.id = id;
         this.name = name;
-        this.pnumber = pnumber;
+        this.email = email;
+        this.password = password;
+        this.job = job;
+        this.facebookName = facebookName;
     }
 
-    public CustomerDao(int id, String name, int pnumber, String email, String faceBookName) {
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
         this.name = name;
-        this.pnumber = pnumber;
-        this.email = email;
-        this.faceBookName = faceBookName;
     }
 
     public String getEmail() {
@@ -36,44 +63,27 @@ public class CustomerDao {
         this.email = email;
     }
 
-    public String getFaceBookName() {
-        return faceBookName;
+    public String getPassword() {
+        return password;
     }
 
-    public void setFaceBookName(String faceBookName) {
-        this.faceBookName = faceBookName;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public int getId() {
-        return id;
+    public String getJob() {
+        return job;
     }
 
-    public String getName() {
-        return name;
+    public void setJob(String job) {
+        this.job = job;
     }
 
-    public int getPnumber() {
-        return pnumber;
+    public String getFacebookName() {
+        return facebookName;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setPnumber(int pnumber) {
-        this.pnumber = pnumber;
-    }
-
-    @Override
-    public String toString() {
-        return "CustomerDao{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", pnumber=" + pnumber +
-                '}';
+    public void setFacebookName(String facebookName) {
+        this.facebookName = facebookName;
     }
 }

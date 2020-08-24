@@ -15,6 +15,8 @@ public class CustomerController {
     //updateCustomer
     //deleteCustomer
 
+    //addOrders
+
     @Autowired
     private CustomerService customerService;
 
@@ -47,4 +49,11 @@ public class CustomerController {
         this.customerService.deleteCustomer(id);
     }
 
+//
+    @PutMapping("/customers/addOrder")
+    public void addOrders(@RequestBody CustomerDao customerDao){
+        this.customerService.addCustomer(customerDao);
+        System.out.println(customerDao);
+
+    }
 }

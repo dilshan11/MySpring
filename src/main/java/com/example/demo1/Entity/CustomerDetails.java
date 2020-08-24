@@ -3,14 +3,17 @@ package com.example.demo1.Entity;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "customer_details")
 public class CustomerDetails {
-    //email
-    //faceBookName
+    //id
+    //job
+    //facebookName
+    //customer
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String email;
-    private String faceBookName;
+    private String job;
+    private String facebookName;
 
     @OneToOne(mappedBy = "customerDetails")
     private Customer customer;
@@ -18,9 +21,9 @@ public class CustomerDetails {
     public CustomerDetails() {
     }
 
-    public CustomerDetails(String email, String faceBookName) {
-        this.email = email;
-        this.faceBookName = faceBookName;
+    public CustomerDetails(String job, String facebookName) {
+        this.job = job;
+        this.facebookName = facebookName;
     }
 
     public int getId() {
@@ -31,28 +34,36 @@ public class CustomerDetails {
         this.id = id;
     }
 
-    public String getEmail() {
-        return email;
+    public String getJob() {
+        return job;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setJob(String job) {
+        this.job = job;
     }
 
-    public String getFaceBookName() {
-        return faceBookName;
+    public String getFacebookName() {
+        return facebookName;
     }
 
-    public void setFaceBookName(String faceBookName) {
-        this.faceBookName = faceBookName;
+    public void setFacebookName(String facebookName) {
+        this.facebookName = facebookName;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
     @Override
     public String toString() {
         return "CustomerDetails{" +
                 "id=" + id +
-                ", email='" + email + '\'' +
-                ", faceBookName='" + faceBookName + '\'' +
+                ", job='" + job + '\'' +
+                ", facebookName='" + facebookName + '\'' +
                 '}';
     }
 }
