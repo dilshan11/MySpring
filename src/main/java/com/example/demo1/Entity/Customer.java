@@ -32,6 +32,7 @@ public class Customer {
     public Customer() {
     }
 
+
     public Customer(String name, String email, String password) {
         this.name = name;
         this.email = email;

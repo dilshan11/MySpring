@@ -3,7 +3,7 @@ package com.example.demo1.Entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "myorder")
+@Table(name = "my_order")
 public class Order {
     //id
     //date

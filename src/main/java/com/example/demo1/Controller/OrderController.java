@@ -22,14 +22,14 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
-    @GetMapping("orders")
-    public List<OrderDao> getAllOrdrs(){
-       return this.orderService.getAllOrders();
-    }
-    @PostMapping("orders")
-    public void addOrder(@RequestBody CustomerDao customerDao){
-
-         this.orderService.addOrder(customerDao);
-    }
+//    @GetMapping("orders")
+//    public List<OrderDao> getAllOrdrs(){
+//       return this.orderService.getAllOrders();
+//    }
+//    @PostMapping("orders")
+//    public void addOrder(@RequestBody CustomerDao customerDao){
+//
+//         this.orderService.addOrder(customerDao);
+//    }
 
 }

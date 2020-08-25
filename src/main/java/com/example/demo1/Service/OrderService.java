@@ -26,13 +26,13 @@ public class OrderService {
         this.orderRepositery.findAll();
         return null;
     }
-    public void addOrder(CustomerDao customerDao){
-        Order order=new Order(customerDao.getDate());
-        CustomerDetails customerDetails=new CustomerDetails(customerDao.getJob(),customerDao.getFacebookName());
-        Customer customer=new Customer(customerDao.getName(),customerDao.getEmail(),customerDao.getPassword(),customerDetails);
-        order.setCustomer(customer);
-        this.orderRepositery.save(order);
-    }
+//    public void addOrder(CustomerDao customerDao){
+//        Order order=new Order(customerDao.getDate());
+//        CustomerDetails customerDetails=new CustomerDetails(customerDao.getJob(),customerDao.getFacebookName());
+//        Customer customer=new Customer(customerDao.getName(),customerDao.getEmail(),customerDao.getPassword(),customerDetails);
+//        order.setCustomer(customer);
+//        this.orderRepositery.save(order);
+//    }
 
 
 }

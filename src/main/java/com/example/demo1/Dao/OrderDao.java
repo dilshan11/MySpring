@@ -5,7 +5,7 @@ public class OrderDao {
 
     //id
     //date
-    //customer
+    //customerDao
 
     private int id;
     private String date;
