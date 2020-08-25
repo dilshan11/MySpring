@@ -26,7 +26,7 @@ public class Customer {
     @JoinColumn(name="customer_details_id")
     private CustomerDetails customerDetails;
 
-    @OneToMany(mappedBy = "customer")
+    @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL)
     private List<Order> orders;
 
     public Customer() {
@@ -108,8 +108,7 @@ public class Customer {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", customerDetails=" + customerDetails +
+                ", password='" + password + '\''+
                 '}';
     }
 }

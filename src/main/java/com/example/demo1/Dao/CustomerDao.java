@@ -1,15 +1,12 @@
 package com.example.demo1.Dao;
 
+import java.util.List;
+
 public class CustomerDao {
 
     //name
     //email
     //password
-
-    //job
-    //facebookName
-
-    //date
 
     private int id;
     private String name;
@@ -17,9 +14,8 @@ public class CustomerDao {
     private String password;
 
     private CustomerDetailsDao customerDetailsDao;
-//    private String job;
-//    private String facebookName;
-//    private String date;
+
+    private List<OrderDao> orderDaoList;
 
     public CustomerDao() {
     }
@@ -38,22 +34,23 @@ public class CustomerDao {
         this.password = password;
         this.customerDetailsDao = customerDetailsDao;
     }
-//    public CustomerDao(int id, String name, String email, String password, String job, String facebookName) {
-//        this.id = id;
-//        this.name = name;
-//        this.email = email;
-//        this.password = password;
-//        this.job = job;
-//        this.facebookName = facebookName;
-//    }
 
-//    public String getDate() {
-//        return date;
-//    }
+    public CustomerDao(int id, String name, String email, String password, CustomerDetailsDao customerDetailsDao, List<OrderDao> orderDaoList) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.customerDetailsDao = customerDetailsDao;
+        this.orderDaoList = orderDaoList;
+    }
 
-//    public void setDate(String date) {
-//        this.date = date;
-//    }
+    public List<OrderDao> getOrderDaoList() {
+        return orderDaoList;
+    }
+
+    public void setOrderDaoList(List<OrderDao> orderDaoList) {
+        this.orderDaoList = orderDaoList;
+    }
 
     public CustomerDetailsDao getCustomerDetailsDao() {
         return customerDetailsDao;
@@ -103,22 +100,7 @@ public class CustomerDao {
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", customerDetailsDao=" + customerDetailsDao +
+                ", orderDaoList=" + orderDaoList +
                 '}';
     }
-
-    //    public String getJob() {
-//        return job;
-//    }
-//
-//    public void setJob(String job) {
-//        this.job = job;
-//    }
-//
-//    public String getFacebookName() {
-//        return facebookName;
-//    }
-//
-//    public void setFacebookName(String facebookName) {
-//        this.facebookName = facebookName;
-//    }
 }

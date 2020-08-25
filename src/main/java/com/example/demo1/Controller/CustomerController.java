@@ -50,17 +50,14 @@ public class CustomerController {
         this.customerService.deleteCustomer(id);
     }
 
-//
-    @PutMapping("/customers/addOrder")
-    public void addOrders(@RequestBody CustomerDao customerDao){
-        this.customerService.addCustomer(customerDao);
-        System.out.println(customerDao);
-
-
-    }
-
     @PutMapping("/customers/addCustomerDetails")
     public void addDCustomerDetails(@RequestBody CustomerDao customerDao){
-        this.customerService.addCustomerDetails(customerDao );
+        this.customerService.addCustomerDetailsToCustomer(customerDao );
+    }
+
+    @PutMapping("/customers/addOrders")
+    public void addOrdersToCustomers(@RequestBody CustomerDao customerDao){
+
+        this.customerService.addOrdersToCustomers(customerDao);
     }
 }

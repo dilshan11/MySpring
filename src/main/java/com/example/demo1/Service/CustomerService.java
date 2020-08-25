@@ -2,6 +2,7 @@ package com.example.demo1.Service;
 
 import com.example.demo1.Dao.CustomerDao;
 import com.example.demo1.Dao.CustomerDetailsDao;
+import com.example.demo1.Dao.OrderDao;
 import com.example.demo1.Entity.Customer;
 import com.example.demo1.Entity.CustomerDetails;
 import com.example.demo1.Entity.Order;
@@ -9,7 +10,7 @@ import com.example.demo1.Repositery.CustomerRepositery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.lang.reflect.Type;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -54,7 +55,6 @@ public class CustomerService {
            CustomerDao customerDao=new CustomerDao(0,null,null,null);
            return customerDao;
         }
-
     }
 
     public void addCustomer(CustomerDao customerDao){
@@ -75,12 +75,28 @@ public class CustomerService {
     this.customerRepositery.deleteById(id);
     }
 
-    public void addCustomerDetails(CustomerDao customerDao){
-        Customer customer=new Customer(customerDao.getName(),customerDao.getEmail(),customerDao.getPassword());
-        customer.setId(customerDao.getId());
+
+    public void addCustomerDetailsToCustomer(CustomerDao customerDao){
+        Optional<Customer> customerOptional =this.customerRepositery.findById(customerDao.getId());
+        Customer customer=customerOptional.get();
         CustomerDetails customerDetails=new CustomerDetails(customerDao.getCustomerDetailsDao().getJob(),customerDao.getCustomerDetailsDao().getFacebookName());
         customer.setCustomerDetails(customerDetails);
         this.customerRepositery.save(customer);
+    }
+
+    public void addOrdersToCustomers(CustomerDao customerDao){
+
+            Optional<Customer> customerOptional =this.customerRepositery.findById(customerDao.getId());
+            Customer customer=customerOptional.get();
+            List<OrderDao> orderDaoList=customerDao.getOrderDaoList();
+
+            for(OrderDao orderDao : orderDaoList){
+            Order order=new Order(orderDao.getDate());
+            customer.add(order);
+                System.out.println(order);
+        }
+
+            this.customerRepositery.save(customer);
     }
 
 }
