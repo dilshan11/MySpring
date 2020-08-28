@@ -93,7 +93,7 @@ public class CustomerService {
             for(OrderDao orderDao : orderDaoList){
             Order order=new Order(orderDao.getDate());
             customer.add(order);
-                System.out.println(order);
+            System.out.println(order);
         }
 
             this.customerRepositery.save(customer);

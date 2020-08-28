@@ -1,0 +1,99 @@
+
+http://localhost:8080/customers/addCustomerDetails
+
+
+{
+	"date":"2020/08/08",
+	"customerDao":{
+			"id":13
+			},
+	"orderdetailsDaoList":[
+			{
+			   "itemDao":{
+					"id":1
+					},
+					"qty":2
+				},
+					{
+			   "itemDao":{
+					"id":3
+					},
+					"qty":4
+				}
+		]
+}
+
+
+
+{
+	"date":"2020/08/08",
+	"customerDao":{
+			"id":13
+			},
+	"orderdetailsDaoList":[
+			{
+			   "itemDao":{
+					"id":1
+					}
+				}
+		]
+}
+
+{
+	
+	"id":14,
+	"name":"sachithra",
+	"password":"4321",
+	"email":"menids@gmail.com",
+	"customerDetailsDao":{
+		"job":"poctor",
+		"facebookName": "mohan mohan"
+	}
+}
+
+
+{
+	"id":13,
+	"orderDaoList":[
+		{
+		"date":"2002/02/23"
+		},
+		{
+		"date":"2003/12/09"
+		}
+	]
+}
+
+
+{
+	"id":14,
+	"customerDetailsDao":{
+		"job":"Clark",
+		"facebookName":"super shiva"
+	}
+}
+
+when to use bidirectional mapping
+what is jpa Auditing
+what is go
+what is json serilization and desilirization
+
+
+microsoft power platform
+
+cid
+date
+  arrray=>itemid
+	  qty
+
+CustomerDao
+OrderDao
+	Orderdetails =>
+			item=>	
+				id
+				name
+				qty
+	Orderdetails
+	Orderdetails
+	
+	

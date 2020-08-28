@@ -1,6 +1,8 @@
 package com.example.demo1.Dao;
 
 
+import java.util.List;
+
 public class OrderDao {
 
     //id
@@ -10,6 +12,7 @@ public class OrderDao {
     private int id;
     private String date;
     private CustomerDao customerDao;
+    private List<OrderdetailsDao> orderdetailsDaoList;
 
     public OrderDao() {
     }
@@ -18,6 +21,14 @@ public class OrderDao {
         this.id = id;
         this.date = date;
         this.customerDao = customerDao;
+    }
+
+    public List<OrderdetailsDao> getOrderdetailsDaoList() {
+        return orderdetailsDaoList;
+    }
+
+    public void setOrderdetailsDaoList(List<OrderdetailsDao> orderdetailsDaoList) {
+        this.orderdetailsDaoList = orderdetailsDaoList;
     }
 
     public int getId() {
@@ -50,6 +61,7 @@ public class OrderDao {
                 "id=" + id +
                 ", date='" + date + '\'' +
                 ", customerDao=" + customerDao +
+                ", orderdetailsDaoList=" + orderdetailsDaoList +
                 '}';
     }
 }

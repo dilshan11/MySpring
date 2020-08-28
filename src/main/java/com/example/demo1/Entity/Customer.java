@@ -13,7 +13,6 @@ public class Customer {
     //password
     //customer_details
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;

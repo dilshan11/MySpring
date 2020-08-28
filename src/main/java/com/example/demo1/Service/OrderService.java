@@ -1,11 +1,12 @@
 package com.example.demo1.Service;
 
 import com.example.demo1.Dao.CustomerDao;
+import com.example.demo1.Dao.ItemDao;
 import com.example.demo1.Dao.OrderDao;
-import com.example.demo1.Entity.Customer;
-import com.example.demo1.Entity.CustomerDetails;
-import com.example.demo1.Entity.Order;
+import com.example.demo1.Dao.OrderdetailsDao;
+import com.example.demo1.Entity.*;
 import com.example.demo1.Repositery.CustomerRepositery;
+import com.example.demo1.Repositery.ItemRepositery;
 import com.example.demo1.Repositery.OrderRepositery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,6 +26,9 @@ public class OrderService {
     @Autowired
     private OrderRepositery orderRepositery;
 
+    @Autowired
+    private ItemRepositery itemRepositery;
+
    @Autowired
    private CustomerRepositery customerRepositery;
 
@@ -34,6 +38,9 @@ public class OrderService {
             for(Order order: orderList){
                 CustomerDao customerDao=new CustomerDao(order.getCustomer().getId(),order.getCustomer().getName(),order.getCustomer().getEmail(),order.getCustomer().getPassword());
                 OrderDao orderDao=new OrderDao(order.getId(),order.getDate(),customerDao);
+                List<Orderdetails> orderdetailsList=order.getOrderdetailsList();
+
+
                 orderDaoList.add(orderDao);
             }
         return orderDaoList;
@@ -45,7 +52,23 @@ public class OrderService {
         if (optionalOrder.isPresent()) {
             CustomerDao customerDao = new CustomerDao(order.getCustomer().getId(), order.getCustomer().getName(), order.getCustomer().getEmail(), order.getCustomer().getPassword());
             OrderDao orderDao = new OrderDao(order.getId(), order.getDate(), customerDao);
+            List<Orderdetails> orderdetailsList=order.getOrderdetailsList();
+            List<OrderdetailsDao> orderdetailsDaoList=new ArrayList<>();
+
+            for(Orderdetails orderdetails : orderdetailsList){
+                OrderdetailsDao orderdetailsDao=new OrderdetailsDao();
+                Item item=orderdetails.getItem();
+                ItemDao itemDao=new ItemDao(item.getId(),item.getName(),item.getQty());
+                orderdetailsDao.setItemDao(itemDao);
+
+                orderdetailsDao.setQty(orderdetails.getQty());
+
+                orderdetailsDaoList.add(orderdetailsDao);
+            }
+
+            orderDao.setOrderdetailsDaoList(orderdetailsDaoList);
             return orderDao;
+
         } else {
             OrderDao orderDao = new OrderDao(0, null, null);
             return orderDao;
@@ -53,9 +76,19 @@ public class OrderService {
     }
 
          public void addOrder(OrderDao orderDao){
+
             CustomerDao customerDao=orderDao.getCustomerDao();
             Customer customer=this.customerRepositery.findById(customerDao.getId()).get();
             Order order=new Order(orderDao.getDate(),customer);
+            List<OrderdetailsDao> orderdetailsDaoList=orderDao.getOrderdetailsDaoList();
+
+            for(OrderdetailsDao orderdetailsDao:orderdetailsDaoList){
+                Item item=this.itemRepositery.findById(orderdetailsDao.getItemDao().getId()).get();
+                item.setQty(item.getQty()-orderdetailsDao.getQty());
+                Orderdetails orderdetails=new Orderdetails(item,orderdetailsDao.getQty());
+
+                order.add(orderdetails);
+            }
             this.orderRepositery.save(order);
     }
 
